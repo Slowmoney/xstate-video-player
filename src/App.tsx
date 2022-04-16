@@ -1,13 +1,11 @@
 import './App.css';
-import { ModalVideoPlayer } from './ModalVideoPlayer';
+import { ModalVideoPlayer } from './components/ModalVideoPlayer/ModalVideoPlayer';
 
 function App () {
     return (
-        <div>
-            <main>
-                <ModalVideoPlayer/>
-            </main>
-        </div>
+        <main>
+            <ModalVideoPlayer/>
+        </main>
     );
 }
 
