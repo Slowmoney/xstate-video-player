@@ -5,6 +5,12 @@ import { useMachine } from '@xstate/react';
 import { machine } from './VideoPlayerMachine';
 import './ModalVideoPlayer.css';
 
+declare module 'antd'{
+    export interface ModalProps{
+        children: JSX.Element
+    }
+}
+
 export function ModalVideoPlayer () {
     const [state, send] = useMachine(machine);
     const isOpen = state.matches('opened')
@@ -13,11 +19,11 @@ export function ModalVideoPlayer () {
 
     return (<>
         <div className='modal-video-player'>
-            <Button onClick={() => send('OPEN')} type="secondary" shape="circle" icon={<PlaySquareOutlined />} />
+            <Button onClick={() => send('OPEN')} type="primary" shape="circle" icon={<PlaySquareOutlined />} />
         </div>
         <Modal onCancel={() => send('CLOSE')}  title="Video" visible={isOpen} footer={<>
             <Button onClick={() => send('TOGGLE')} type="primary" shape="circle" icon={isMinimize?<FullscreenOutlined />:<FullscreenExitOutlined />} />
-            <Button onClick={()=>send(isPlaying?'PAUSE':'PLAY')} type="secondary" shape="circle" icon={isPlaying?<PauseCircleOutlined />:<PlayCircleOutlined />} />
+            <Button onClick={()=>send(isPlaying?'PAUSE':'PLAY')} type="primary" shape="circle" icon={isPlaying?<PauseCircleOutlined />:<PlayCircleOutlined />} />
         </>} width={isMinimize?640:1200}>
             <div>
                 <ReactPlayer
